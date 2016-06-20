@@ -48,7 +48,7 @@
 	<!-- 切入点，处理所有请求，没有登陆的定向到CAS Server的登陆画面。 -->
 	<bean id="casEntryPoint" class="org.springframework.security.cas.web.CasAuthenticationEntryPoint">
 	    <!-- CAS Server 登录地址 -->
-		<property name="loginUrl" value="${cas.server.url}"/> 
+		<property name="loginUrl" value="${cas.server.url}/login"/> 
 		<property name="serviceProperties" ref="serviceProperties"/>
 	</bean>
 	
