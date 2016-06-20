@@ -25,3 +25,16 @@ Servers/
 target/
 RemoteSystemsTempFiles/
 
+
+#Yii Framework
+yii-1.1.17.467ff50/*
+assets/
+
+
+
+.recommenders/
+
+cas-client-for
+cas-yii-client
+cert/
+rebel.xml
