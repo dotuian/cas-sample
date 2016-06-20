@@ -21,7 +21,7 @@
         
 		<!-- 退出登录 -->        
 	    <security:logout logout-success-url="/cas-logout.jsp"/>
-	    <security:custom-filter ref="requestSingleLogoutFilter" before="LOGOUT_FILTER"/>
+	    <security:custom-filter ref="logoutFilter" before="LOGOUT_FILTER"/>
 	    <security:custom-filter ref="singleLogoutFilter" before="CAS_FILTER"/>
 	</security:http>
 
@@ -64,6 +64,7 @@
 		<property name="serviceProperties" ref="serviceProperties"></property>
 		<property name="ticketValidator">
 			<bean class="org.jasig.cas.client.validation.Cas20ServiceTicketValidator">
+			
 			    <!-- SSO验证地址 -->
 				<constructor-arg index="0" value="${cas.server.url}" />
 			</bean>
@@ -81,10 +82,14 @@
 
 	<!-- 注销服务器端 Session-->
 	<!-- This filter redirects to the CAS Server to signal Single Logout should be performed -->
-	<bean id="requestSingleLogoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
+	<bean id="logoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
 	  <constructor-arg value="${cas.server.url}/logout"/>
 	  <constructor-arg>
-		<bean class= "org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler"/>
+		  <list>
+			<bean class= "org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler"/>
+			<!-- 自定义退出登录的处理  -->
+			<bean class= "com.dotuian.cas.ClientLogoutHandler"/>
+		  </list>
 	  </constructor-arg>
 	  <property name="filterProcessesUrl" value="/j_spring_cas_security_logout"/>
 	</bean>

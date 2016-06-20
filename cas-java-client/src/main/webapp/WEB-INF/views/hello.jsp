@@ -11,7 +11,7 @@
 	
 	
 
-	<a href="<spring:eval expression="@applicationProperties.getProperty('cas.server.url')"/>/logout">退出</a>
+	<a href="<spring:eval expression="@applicationProperties.getProperty('cas.client.url')"/>/j_spring_cas_security_logout">退出</a>
 	
 </body>
 </html>
