@@ -84,7 +84,7 @@
 	<bean id="requestSingleLogoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
 	  <constructor-arg value="${cas.server.url}/logout"/>
 	  <constructor-arg>
-	    <bean class= "org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler"/>
+		<bean class= "org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler"/>
 	  </constructor-arg>
 	  <property name="filterProcessesUrl" value="/j_spring_cas_security_logout"/>
 	</bean>
