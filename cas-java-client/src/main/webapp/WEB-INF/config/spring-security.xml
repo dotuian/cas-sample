@@ -73,7 +73,7 @@
 		<property name="key" value="an_id_for_this_auth_provider_only" />
 	</bean>
 
-	<bean id="userService" class="com.dotuian.cas.UserDetailsServiceImpl" />
+	<bean id="userService" class="com.dotuian.cas.authority.UserDetailsServiceImpl" />
 
 
 	<!-- 注销客户端 Session-->
@@ -88,7 +88,7 @@
 		  <list>
 			<bean class= "org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler"/>
 			<!-- 自定义退出登录的处理  -->
-			<bean class= "com.dotuian.cas.ClientLogoutHandler"/>
+			<bean class= "com.dotuian.cas.authority.ClientLogoutHandler"/>
 		  </list>
 	  </constructor-arg>
 	  <property name="filterProcessesUrl" value="/j_spring_cas_security_logout"/>
