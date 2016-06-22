@@ -1,5 +1,6 @@
 
 + 用户登录验证表结构   
+```
     CREATE TABLE users (
         id BIGINT(20) NOT NULL AUTO_INCREMENT,
         username CHAR(50) NOT NULL,
@@ -16,12 +17,12 @@
     )
     COLLATE='utf8_general_ci'
     ENGINE=InnoDB;
-
+```
 
 ### 通过指定数据库表的验证用户 ###
 + 在 deployerConfigContext.xml 文件中配置信息
 
-    <!-- 数据库连接信息 -->
+```
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="driverClassName">
             <value>com.mysql.jdbc.Driver</value>
@@ -39,29 +40,29 @@
 
     <property name="authenticationHandlers">
         <list>
-            <!-- 数据库连接信息 -->
             <bean class="org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler">
                 <property name="dataSource" ref="dataSource" />
                 <property name="sql" value="select password from users where lower(username) = lower(?)" />
             </bean>
         </list>
     </property>
-
+```
 
 ### 通过代码验证登录用户 ###
 + 集成抽象类 AbstractUsernamePasswordAuthenticationHandler，实现抽象方法 authenticateUsernamePasswordInternal 。  
 + 在 deployerConfigContext.xml 文件中配置信息。
-    
+```
     <property name="authenticationHandlers">
         <list>
             <bean class="com.dotuian.cas.UsernamePasswordAuthenticationHandler" />
         </list>
     </property>
-
+```
 
 ###　服务器返回多个数据　＃＃＃
 + 配置 deployerConfigContext.xml 中的 attributeRepository
-  
+
+```
     <bean id="attributeRepository"
         class="org.jasig.services.persondir.support.jdbc.SingleRowJdbcPersonAttributeDao">
         <constructor-arg index="0" ref="dataSource"/>
@@ -85,9 +86,10 @@
             </map>
         </property>
     </bean>
+```
     
 + 配置 deployerConfigContext.xml 中的 InMemoryServiceRegistryDaoImpl 中的 allowedAttributes。
-
+```
     <bean
         id="serviceRegistryDao"
         class="org.jasig.cas.services.InMemoryServiceRegistryDaoImpl">
@@ -113,6 +115,7 @@
                 </list>
             </property>
     </bean>
+```
 
 + 修改文件 WEB-INF/view/jsp/protocol/2.0/casServiceValidationSuccess.jsp，[详细参照](https://github.com/dotuian/cas-sample/blob/master/cas-server-overlay-sample/src/main/webapp/WEB-INF/view/jsp/protocol/2.0/casServiceValidationSuccess.jsp)
  
