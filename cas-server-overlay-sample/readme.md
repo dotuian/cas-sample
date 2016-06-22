@@ -10,8 +10,6 @@
 + 导出公钥信息
 ```
 	keytool -export -file cas.crt -alias cas -keystore cas.keystore
-	キーストアのパスワードを入力してください:
-	証明書がファイル<cas.crt>に保存されました
 ```
 
 + 导入公钥到JRE
