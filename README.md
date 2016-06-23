@@ -19,6 +19,11 @@ keytool -export -file cas.crt -alias cas -keystore cas.keystore
 証明書がファイル<cas.crt>に保存されました
 ```
 
++ 删除已经存在的公钥
+```
+keytool -delete -keystore "${jdk_path}\jre\lib\security\cacerts" -alias cas
+```
+
 + 导入公钥到JRE
 ```
 keytool -import -keystore "${jdk_path}\jre\lib\security\cacerts" --file cas.crt -alias cas
