@@ -14,9 +14,10 @@
 
 + 导入公钥到JRE
 ```
-	keytool -import -keystore "${jdk_path}\jre\lib\security\cacerts" --file cas.crt -alias cas
+	keytool -import -keystore "${jdk_home}\jre\lib\security\cacerts" --file cas.crt -alias cas
 ```
-> 执行需要管理者权限，Windows下需要以 管理者 运行cmd。
+> 执行需要管理者权限，Windows下需要以 管理者 运行cmd。如果cacerts文件中已经存在了公钥，先删除 再导入。
+> `keytool -delete -alias cas -keystore "${jdk_home}\jre\lib\security\cacerts" `
 
 + tomcat的 server.xml 的配置
 ```
